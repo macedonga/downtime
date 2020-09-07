@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+body {
+    color: white;
+    background-color: black;
+    font-family: 'Roboto', sans-serif;
+    display: block;
+}
+
+.container {
+    text-align: center;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h1 {
+    animation: animated-text 2s linear infinite;
+}
+
+label {
+    animation: animated-text 2s linear infinite;
+}
+
+button {
+    background-color: black;
+    padding: 10px;
+    margin-top: 10px;
+    animation: animated-text-border 2s linear infinite;
+}
+
+button:hover,
+input[type="submit"]:hover {
+    background-color: rgb(60, 60, 60);
+}
+
+button:active,
+input[type="submit"]:active {
+    background-color: rgb(30, 30, 30);
+}
+
+input {
+    background-color: black;
+    padding: 5px;
+    margin-top: 5px;
+    max-width: 20em;
+    animation: animated-text-border 2s linear infinite;
+}
+
+@keyframes animated-text {
+    0% {
+        color: rgb(0, 132, 255);
+    }
+    25% {
+        color: rgb(255, 251, 0);
+    }
+    50% {
+        color: rgb(0, 216, 0);
+    }
+    75% {
+        color: rgb(255, 81, 0);
+    }
+    100% {
+        color: rgb(0, 132, 255);
+    }
+}
+
+@keyframes animated-text-border {
+    0% {
+        color: rgb(0, 132, 255);
+        border: solid 2px rgb(0, 132, 255);
+    }
+    25% {
+        color: rgb(255, 251, 0);
+        border: solid 2px rgb(255, 251, 0);
+    }
+    50% {
+        color: rgb(0, 216, 0);
+        border: solid 2px rgb(0, 216, 0);
+    }
+    75% {
+        color: rgb(255, 81, 0);
+        border: solid 2px rgb(255, 81, 0);
+    }
+    100% {
+        color: rgb(0, 132, 255);
+        border: solid 2px rgb(0, 132, 255);
+    }
+}
+
+.in {
+    margin-top: 10px;
+}
+
+.err {
+    font-size: xx-large;
+    animation: animated-text 2s linear infinite;
+    margin: 10px;
+}
