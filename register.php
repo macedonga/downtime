@@ -7,7 +7,7 @@ $email = $_GET["email"];
 
 if(filter_var($url, FILTER_VALIDATE_URL)) {
 
-    
+    // Cooldown for the register stuff
     if(isset($_SESSION['last_submit']) && ((time() - $_SESSION['last_submit']) < 60 * 5)) {
         header("Location: error.html?e=cooldown");
     }
