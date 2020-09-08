@@ -10,6 +10,7 @@ if(filter_var($url, FILTER_VALIDATE_URL)) {
     // Cooldown for the register stuff
     if(isset($_SESSION['last_submit']) && ((time() - $_SESSION['last_submit']) < 60 * 5)) {
         header("Location: error.html?e=cooldown");
+        die();
     }
     $_SESSION['last_submit'] = time();
 
@@ -21,6 +22,7 @@ if(filter_var($url, FILTER_VALIDATE_URL)) {
     $conn = new mysqli($server, $username, $password, $db);
     if ($conn->connect_error) {
         header("Location: error.html?e=db");
+        die();
     }
 
     $url = urlencode($url); 
@@ -28,11 +30,13 @@ if(filter_var($url, FILTER_VALIDATE_URL)) {
     $query = $conn->query("SELECT * FROM data WHERE url = '$url' AND email = '$email'");
 	if($query->num_rows) {
         header("Location: error.html?e=ver");
+        die();
     }
     
 	$query = "INSERT INTO data (url, email, verified) VALUES ('$url', '$email', false)";
 	if (!$conn->query($query)) {
         header("Location: error.html?e=db");
+        die();
     }
     
     $query = $conn->query("SELECT * FROM data WHERE url = '$url' AND email = '$email'");
@@ -53,4 +57,9 @@ if(filter_var($url, FILTER_VALIDATE_URL)) {
     header("Location: sent.html");
 } else {
     header("Location: error.html?e=url");
+<<<<<<< Updated upstream
 }
+=======
+    die();
+}
+>>>>>>> Stashed changes
