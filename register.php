@@ -6,8 +6,6 @@ $url =filter_var($_GET["url"], FILTER_SANITIZE_URL);
 $email = $_GET["email"];
 
 if(filter_var($url, FILTER_VALIDATE_URL)) {
-
-    // Cooldown for the register stuff
     if(isset($_SESSION['last_submit']) && ((time() - $_SESSION['last_submit']) < 60 * 5)) {
         header("Location: error.html?e=cooldown");
         die();
@@ -42,7 +40,6 @@ if(filter_var($url, FILTER_VALIDATE_URL)) {
     $query = $conn->query("SELECT * FROM data WHERE url = '$url' AND email = '$email'");
 
     $message = "Hi there!\nYou need to verify your email to recive an e-mail when your website is down.\nYour verification link is: https://downtime.macedon.ga/verify.php?uid=" . $query->fetch_all(MYSQLI_BOTH)[0]["id"];
-    echo $url . "\n" . $email . "\n" . $message;
     $from = new SendGrid\Email(null, "no-reply@macedon.ga");
     $subject = "Verify your e-mail";
     $to = new SendGrid\Email(null, $email);
@@ -57,9 +54,5 @@ if(filter_var($url, FILTER_VALIDATE_URL)) {
     header("Location: sent.html");
 } else {
     header("Location: error.html?e=url");
-<<<<<<< Updated upstream
-}
-=======
     die();
 }
->>>>>>> Stashed changes
